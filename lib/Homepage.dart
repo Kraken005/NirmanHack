@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'constants/color_constants.dart';
-import 'Task.dart';
+import 'Tasks.dart';
+
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -11,12 +14,18 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   int index = 0;
-  List Task = [
-    ["Zairza App Design"],
-    ["Zairza App Dev"],
-    ["Flat Assignment"],
-    ["DE Quiz"]
-  ]
+  List TaskList = [
+    ["Zairza App Design", false],
+    ["Zairza App Dev", false],
+    ["Flat Assignment", false],
+    ["DE Quiz", false]
+  ];
+
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      TaskList[index][1] = !TaskList[index][1];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +135,6 @@ class _HomepageState extends State<Homepage> {
               SizedBox(
                 height: 24,
               ),
-
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
@@ -196,168 +204,28 @@ class _HomepageState extends State<Homepage> {
                       fontWeight: FontWeight.w600),
                 ),
               ),
-
+              SizedBox(
+                height: 25,
+              ),
+              
               Expanded(
-                  child: ListView(
-                children: [
-                  Task(
-                    taskName: 'Zairza App Design',
-                    taskCompleted: true,
-                    onChanged: (p0) {},
+                child: Padding(
+                  padding: const EdgeInsets.only(left:10.0,right: 10),
+                  child: Container(
+                    
+                    decoration: BoxDecoration(color: Gcolors.neutralColor900,borderRadius: BorderRadius.circular(20)),
+                    child: ListView.builder(
+                    itemCount: TaskList.length,
+                    itemBuilder: (context, index) {
+                      return ToDoTask(
+                        taskName: TaskList[index][0], 
+                        taskCompleted: TaskList[index][1], 
+                        onChanged: (value) => checkBoxChanged(value,index));
+                    },
+                    
+                                ),
                   ),
-                  Task(
-                    taskName: 'Zairza App Design',
-                    taskCompleted: false,
-                    onChanged: (p0) {},
-                  ),
-                  Task(
-                    taskName: 'Zairza App Design',
-                    taskCompleted: true,
-                    onChanged: (p0) {},
-                  ),
-                  Task(
-                    taskName: 'Zairza App Design',
-                    taskCompleted: false,
-                    onChanged: (p0) {},
-                  ),
-                ],
-              ))
-
-              // Container(
-              //  // height: 463,
-              //   //width: 366,
-              //   decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.circular(15),
-              //       color: Color(0xff302D38)),
-              //   child: Container(
-
-              //       padding: EdgeInsets.only(top: 20, left: 15, right: 15),
-              //       child: Column(
-
-              //         children: [
-              //           Expanded(child: ListView(
-              //             children: [
-              //               Task(),
-              //             ],
-              //           ))
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Icon(Icons.check_box,
-              //         color: Gcolors.primaryColor400, size: 36),
-
-              //     SizedBox(width: 10),
-              //     Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //     Text(
-              //       "Zairza App Design",
-              //       style: TextStyle(
-              //           fontSize: 14,
-              //           color: Gcolors.primaryColor050),
-              //     ),
-              //     SizedBox(height: 6),
-              //     Text('5th Jan - 12:30 pm',
-              //         style: TextStyle(
-              //           fontSize: 14,
-              //           color: Gcolors.primaryColor400,
-              //           fontWeight: FontWeight.bold,
-              //         )),
-              //   ],
-              // ),
-              // SizedBox(width: 134),
-              // Icon(Icons.edit,
-              //     color: Gcolors.primaryColor200, size: 32),
-              //   ],
-              // ),
-              // SizedBox(
-              //   height: 8,
-              // ),
-              // Divider(
-              //   color: Gcolors.primaryColor050,
-              //   thickness: 1,
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Icon(Icons.check_box,
-              //         color: Gcolors.primaryColor400, size: 36),
-              //     SizedBox(width: 10),
-              //     Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         Text(
-              //           "Zairza App Dev",
-              //           style: TextStyle(
-              //               fontSize: 14,
-              //               color: Gcolors.primaryColor050),
-              //         ),
-              //         SizedBox(height: 6),
-              //         Text('7th Jan - 12:30 pm',
-              //             style: TextStyle(
-              //               fontSize: 14,
-              //               color: Gcolors.primaryColor400,
-              //               fontWeight: FontWeight.bold,
-              //             )),
-              //       ],
-              //     ),
-              //     SizedBox(width: 134),
-              //     Icon(Icons.edit,
-              //         color: Gcolors.primaryColor200, size: 32),
-              //   ],
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // Divider(
-              //   color: Gcolors.primaryColor050,
-              //   thickness: 1,
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              //  Row(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Icon(Icons.check_box,
-              //         color: Gcolors.primaryColor400, size: 36),
-              //     SizedBox(width: 10),
-              //     Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         Text(
-              //           "FLAT Assignment",
-              //           style: TextStyle(
-              //               fontSize: 14,
-              //               color: Gcolors.primaryColor050),
-              //         ),
-              //         SizedBox(height: 6),
-              //         Text('5th Jan - 12:30 pm',
-              //             style: TextStyle(
-              //               fontSize: 14,
-              //               color: Gcolors.primaryColor400,
-              //               fontWeight: FontWeight.bold,
-              //             )),
-              //       ],
-              //     ),
-              //     SizedBox(width: 134),
-              //     Icon(Icons.edit,
-              //         color: Gcolors.primaryColor200, size: 32),
-              //   ],
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // ),
-              // Divider(
-              //   color: Gcolors.primaryColor050,
-              //   thickness: 1,
-              // ),
-              // SizedBox(
-              //   height: 10,
-              // )
+                ))
             ],
           )),
         )
