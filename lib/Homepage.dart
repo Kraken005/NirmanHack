@@ -1,6 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/attendance.dart';
+import 'package:flutter_application_1/notification.dart';
 import 'constants/color_constants.dart';
 import 'Tasks.dart';
 
@@ -13,7 +13,10 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  int index = 0;
+  
+  // final screens = [
+  //   Attendance(),
+  // ];
   List TaskList = [
     ["Zairza App Design", false],
     ["Zairza App Dev", false],
@@ -40,35 +43,7 @@ class _HomepageState extends State<Homepage> {
             size: 35,
           ),
         ),
-        bottomNavigationBar: NavigationBarTheme(
-          data: NavigationBarThemeData(
-              indicatorColor: Gcolors.primaryColor400,
-              labelTextStyle: MaterialStateProperty.all(
-                  TextStyle(fontSize: 13, color: Gcolors.primaryColor050))),
-          child: NavigationBar(
-              height: 70,
-              backgroundColor: Gcolors.neutralColor1000,
-              selectedIndex: index,
-              onDestinationSelected: (index) => setState(() {
-                    this.index = index;
-                  }),
-              destinations: [
-                NavigationDestination(
-                  icon: Icon(
-                    Icons.home,
-                    color: Gcolors.primaryColor050,
-                  ),
-                  label: 'Home',
-                ),
-                NavigationDestination(
-                    icon: Icon(Icons.notifications,
-                        color: Gcolors.primaryColor050),
-                    label: 'Notifications'),
-                NavigationDestination(
-                    icon: Icon(Icons.bar_chart, color: Gcolors.primaryColor050),
-                    label: 'Attendance'),
-              ]),
-        ),
+        
         body: Padding(
           padding: const EdgeInsets.only(top: 50, left: 7, right: 7),
           child: Container(
@@ -207,25 +182,29 @@ class _HomepageState extends State<Homepage> {
               SizedBox(
                 height: 25,
               ),
-              
+
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left:10.0,right: 10),
-                  child: Container(
-                    
-                    decoration: BoxDecoration(color: Gcolors.neutralColor900,borderRadius: BorderRadius.circular(20)),
-                    child: ListView.builder(
+                  child: Padding(
+                padding: const EdgeInsets.only(left: 10.0, right: 10),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Gcolors.neutralColor900,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: ListView.builder(
                     itemCount: TaskList.length,
                     itemBuilder: (context, index) {
                       return ToDoTask(
-                        taskName: TaskList[index][0], 
-                        taskCompleted: TaskList[index][1], 
-                        onChanged: (value) => checkBoxChanged(value,index));
+                          taskName: TaskList[index][0],
+                          taskCompleted: TaskList[index][1],
+                          onChanged: (value) => checkBoxChanged(value, index));
                     },
-                    
-                                ),
                   ),
-                ))
+                ),
+              ))
+
+              // Expanded(child: Container(
+              //   s
+              // ))
             ],
           )),
         )
