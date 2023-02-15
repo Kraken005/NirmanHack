@@ -1,8 +1,13 @@
 import 'dart:math';
+import 'package:flutter_application_1/attendance.dart';
+import 'package:flutter_application_1/constants/routes.dart';
+import 'package:flutter_application_1/notification.dart';
+
 import './settask.dart';
 import 'package:flutter/material.dart';
 import 'constants/color_constants.dart';
 import 'Tasks.dart';
+import './profile.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -61,6 +66,15 @@ class _HomepageState extends State<Homepage> {
         false;
   }
 
+  // int _currentIndex = 0;
+  // List _screens = [Homepage(), NotificationPage(), Attendance()];
+
+  // void _updateIndex(int value) {
+  //   setState(() {
+  //     _currentIndex = value;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -79,38 +93,57 @@ class _HomepageState extends State<Homepage> {
               size: 35,
             ),
           ),
-          bottomNavigationBar: NavigationBarTheme(
-            data: NavigationBarThemeData(
-                indicatorColor: Gcolors.primaryColor400,
-                labelTextStyle: MaterialStateProperty.all(
-                    TextStyle(fontSize: 13, color: Gcolors.primaryColor050))),
-            child: NavigationBar(
-                height: 70,
-                backgroundColor: Gcolors.neutralColor1000,
-                selectedIndex: index,
-                onDestinationSelected: (index) => setState(() {
-                      this.index = index;
-                    }),
-                destinations: [
-                  NavigationDestination(
-                    icon: Icon(
-                      Icons.home,
-                      color: Gcolors.primaryColor050,
-                    ),
-                    label: 'Home',
-                  ),
-                  NavigationDestination(
-                      icon: Icon(Icons.notifications,
-                          color: Gcolors.primaryColor050),
-                      label: 'Notifications'),
-                  NavigationDestination(
-                      icon:
-                          Icon(Icons.bar_chart, color: Gcolors.primaryColor050),
-                      label: 'Attendance'),
-                ]),
-          ),
+          // bottomNavigationBar: NavigationBarTheme(
+          //   data: NavigationBarThemeData(
+          //       indicatorColor: Gcolors.primaryColor400,
+          //       labelTextStyle: MaterialStateProperty.all(
+          //           TextStyle(fontSize: 13, color: Gcolors.primaryColor050))),
+          //   child: NavigationBar(
+          //       height: 70,
+          //       backgroundColor: Gcolors.neutralColor1000,
+          //       selectedIndex: index,
+          //       onDestinationSelected: (index) => setState(() {
+          //             this.index = index;
+          //           }),
+          //       destinations: [
+          //         NavigationDestination(
+          //           icon: IconButton(
+          //             icon: Icon(Icons.home),
+          //             onPressed: () {
+          //               Navigator.of(context).pushNamed(homeRoute);
+          //             },
+          //             color: Gcolors.primaryColor050,
+          //           ),
+          //           label: 'Home',
+          //         ),
+          //         NavigationDestination(
+          //             icon: IconButton(
+          //                 onPressed: () {
+          //                   Navigator.push(
+          //                       context,
+          //                       MaterialPageRoute(
+          //                           builder: (context) =>
+          //                               const NotificationPage()));
+          //                 },
+          //                 icon: Icon(Icons.notifications),
+          //                 color: Gcolors.primaryColor050),
+          //             label: 'Notifications'),
+          //         NavigationDestination(
+          //             icon: IconButton(
+          //                 onPressed: () {
+          //                   Navigator.push(
+          //                       context,
+          //                       MaterialPageRoute(
+          //                           builder: (context) => const Attendance()));
+          //                 },
+          //                 icon: Icon(Icons.bar_chart),
+          //                 color: Gcolors.primaryColor050),
+          //             label: 'Attendance'),
+          //       ]),
+          // ),
           body: Padding(
-            padding: const EdgeInsets.only(top: 50, left: 7, right: 7),
+            padding:
+                const EdgeInsets.only(top: 50, left: 7, right: 7, bottom: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -170,7 +203,14 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                         SizedBox(width: 13),
-                        Image.asset('assets/images/Profile.png'),
+                        //Image.asset('assets/images/Profile.png'),
+                        InkWell(
+                          child: Image.asset('assets/images/Profile.png'),
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => profileinfo()));
+                          },
+                        ),
                       ],
                     ),
                   ),
