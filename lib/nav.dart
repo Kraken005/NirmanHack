@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'Homepage.dart';
 
 import 'constants/color_constants.dart';
-import 'notification.dart';
+import 'package:flutter_application_1/notification.dart';
+
 import 'attendance.dart';
 
 class NavigationBarPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
 
   List<Widget> _index = [
     Homepage(),
-    // NotificationPage(),
+    NotificationPage(),
     // Attendance(),
   ];
 
@@ -36,7 +37,7 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
         selectedItemColor: Gcolors.primaryColor400,
         backgroundColor: Gcolors.neutralColor1000,
         unselectedItemColor: Gcolors.primaryColor050,
-        type: BottomNavigationBarType.fixed,
+        //type: BottomNavigationBarType.fixed,
 
         currentIndex: index,
         onTap: updatePage,
