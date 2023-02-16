@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       //   addTaskRoute: (context) => const Settask(),
       //   homeRoute: (context) => const Homepage(),
       //   // notificationRoute: (context) => const NotificationPage(),
+
       //    attendanceRoute: (context) => const AttendancePage(),
       // },
     );
