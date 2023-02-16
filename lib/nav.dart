@@ -18,7 +18,7 @@ class _NavigationBarPageState extends State<NavigationBarPage> {
 
   List<Widget> _index = [
     Homepage(),
-    // NotificationPage(),
+    notification(),
     // Attendance(),
   ];
 

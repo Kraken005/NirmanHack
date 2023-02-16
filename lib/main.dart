@@ -5,6 +5,7 @@ import 'package:flutter_application_1/notification.dart';
 import 'package:flutter_application_1/setTask.dart';
 import 'Homepage.dart';
 import 'package:flutter_application_1/nav.dart';
+import './experimentation/setTaskExperiment.dart';
 
 //import 't';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       routes: {
         addTaskRoute: (context) => const Settask(),
         homeRoute: (context) => const Homepage(),
-        // notificationRoute: (context) => const NotificationPage(),
+        notificationRoute: (context) => const notification(),
         // attendanceRoute: (context) => const Attendance(),
       },
     );

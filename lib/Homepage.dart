@@ -1,7 +1,11 @@
 import 'dart:math';
 import 'package:flutter_application_1/attendance.dart';
 import 'package:flutter_application_1/constants/routes.dart';
+import 'package:flutter_application_1/experimentation/setTaskExperiment.dart';
+import 'package:flutter_application_1/model/TaskComponents.dart';
 import 'package:flutter_application_1/notification.dart';
+import 'package:flutter_application_1/search.dart';
+import 'package:intl/intl.dart';
 
 import './settask.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +14,10 @@ import 'Tasks.dart';
 import './profile.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  //final List<TaskComponent>? events;
+  const Homepage({
+    super.key,
+  });
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -18,16 +25,54 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   int index = 0;
-  List TaskList = [
-    ["Zairza App Design", false],
-    ["Zairza App Dev", false],
-    ["Flat Assignment", false],
-    ["DE Quiz", false]
-  ];
+  // List TaskList = [
+  //   ["Zairza App Design", false],
+  //   ["Zairza App Dev", false],
+  //   ["Flat Assignment", false],
+  //   ["DE Quiz", false]
+  // ];
+  //List<TaskComponent> events = [TaskComponent(title: 'Zairza App Work', description: 'Design and implement app for zairza club', input: input, id: DateTime.now().toString())];
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
-      TaskList[index][1] = !TaskList[index][1];
+      //events[index][1] = !TaskList[index][1];
+    });
+  }
+
+  final List<TaskComponent> events = [
+    TaskComponent(
+        title: 'Zairza App Work',
+        description: 'Design and deploy Zairza App',
+        date: DateTime.now(),
+        time: TimeOfDay.now(),
+        id: DateTime.now().toString()),
+    TaskComponent(
+        title: 'Flat Assignment',
+        description: 'Score full marks in Flat assignment',
+        date: DateTime.now(),
+        time: TimeOfDay.now(),
+        id: DateTime.now().toString()),
+    TaskComponent(
+        title: 'Coffee Date with Barsha',
+        description: 'At Radium Cafe',
+        date: DateTime.now(),
+        time: TimeOfDay.now(),
+        id: DateTime.now().toString()),
+    TaskComponent(
+        title: 'Switch to "Switch"',
+        description: 'Ditch Zairza',
+        date: DateTime.now(),
+        time: TimeOfDay.now(),
+        id: DateTime.now().toString()),
+  ];
+
+  void _addEvents(String title, String description, DateTime date,
+      TimeOfDay time, String id) {
+    final newEvent = TaskComponent(
+        title: title, description: description, date: date, time: time, id: id);
+
+    setState(() {
+      events.add(newEvent);
     });
   }
 
@@ -84,8 +129,9 @@ class _HomepageState extends State<Homepage> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: Color(0xffB8FC27),
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Settask()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      SettaskExperiment(addEvents: _addEvents)));
             },
             child: Icon(
               Icons.add,
@@ -188,12 +234,14 @@ class _HomepageState extends State<Homepage> {
                                   child: Container(
                                     height: 100,
                                     width: 170,
-                                    child: TextField(
-                                      style: TextStyle(fontSize: 14),
-                                      decoration: InputDecoration(
-                                        hintText: 'Search for Clubs...',
-                                        hintStyle: TextStyle(
-                                            color: Gcolors.neutralColor400),
+                                    child: InkWell(
+                                      onTap: () => Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SearchPage())),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: Gcolors.neutralColor1000),
                                       ),
                                     ),
                                   ),
@@ -291,6 +339,7 @@ class _HomepageState extends State<Homepage> {
                 SizedBox(
                   height: 25,
                 ),
+                //ToDoTask(events: events),
                 Expanded(
                     child: Padding(
                   padding: const EdgeInsets.only(left: 10.0, right: 10),
@@ -298,16 +347,35 @@ class _HomepageState extends State<Homepage> {
                     decoration: BoxDecoration(
                         color: Gcolors.neutralColor900,
                         borderRadius: BorderRadius.circular(20)),
-                    child: ListView.builder(
-                      itemCount: TaskList.length,
-                      itemBuilder: (context, index) {
-                        return ToDoTask(
-                            taskName: TaskList[index][0],
-                            taskCompleted: TaskList[index][1],
-                            onChanged: (value) =>
-                                checkBoxChanged(value, index));
-                      },
-                    ),
+                    child: ToDoTask(events: events),
+                    // child: ListView.builder(
+                    //   itemCount: events.length,
+                    //   itemBuilder: (context, index) {
+                    //     // Container(
+                    //     //     padding: EdgeInsets.only(
+                    //     //         left: 10, right: 15, bottom: 10),
+                    //     //     decoration: BoxDecoration(
+                    //     //         color: Gcolors.neutralColor900,
+                    //     //         borderRadius: BorderRadius.circular(20)),
+                    //     //     child: ListTile(
+                    //     //       leading: Container(child: Text('Checkbox'),), title: Text(events[index].title), subtitle: Text(DateFormat.yMMMEd().format(events[index].date)), trailing: Icon(Icons.edit_document, color: Gcolors.primaryColor400),
+                    //     //     ));
+                    //     return ToDoTask(
+                    //       events: [
+                    //         TaskComponent(
+                    //             title: events[index].title,
+                    //             description: events[index].description,
+                    //             date: events[index].date,
+                    //             time: events[index].time,
+                    //             id: events[index].id)
+                    //       ],
+                    //       // taskName: events[index].title,
+                    //       // taskCompleted: events[index].onChanged,
+                    //       // onChanged: (value) =>
+                    //       //     checkBoxChanged(value, index));
+                    //     );
+                    //   },
+                    // ),
                   ),
                 ))
               ],

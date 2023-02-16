@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants/color_constants.dart';
+import 'package:flutter_application_1/constants/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrganisationModel {
@@ -60,7 +61,9 @@ class _SearchPageState extends State<SearchPage> {
               Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushReplacementNamed(homeRoute);
+                      },
                       icon: const Icon(
                         Icons.arrow_back,
                         color: Gcolors.primaryColor100,
@@ -215,8 +218,9 @@ class _SearchPageState extends State<SearchPage> {
                         Text(
                           '${display_list[index].organisationDesciprtion}',
                           style: GoogleFonts.inter(
-                              textStyle:
-                                  TextStyle(color: Gcolors.primaryColor050)),
+                              textStyle: TextStyle(
+                                  color: Gcolors.primaryColor050,
+                                  fontSize: 14)),
                         ),
                         SizedBox(
                           height: 16,
