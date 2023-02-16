@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/attendance.dart';
+import 'attendance.dart';
+import 'square.dart';
 import 'package:flutter_application_1/constants/routes.dart';
 import 'package:flutter_application_1/notification.dart';
 import 'package:flutter_application_1/setTask.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         addTaskRoute: (context) => const Settask(),
         homeRoute: (context) => const Homepage(),
-        notificationRoute: (context) => const notification(),
+        notificationRoute: (context) => const NotificationPage(),
         // attendanceRoute: (context) => const Attendance(),
       },
     );
