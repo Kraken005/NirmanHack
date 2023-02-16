@@ -41,7 +41,9 @@ class _taskListState extends State<taskList> {
   void addEvents(String title, String description, DateTime date,
       TimeOfDay time, String id) {
     final newEvent = TaskComponent(
-        title: title, description: description, date: date, time: time, id: id);
+        title: title, description: description, date: date, time: time, id: DateTime.now().toString()
+        // time: time, id: id
+         );
 
     setState(() {
       events.add(newEvent);

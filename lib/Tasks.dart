@@ -21,6 +21,15 @@ class ToDoTask extends StatefulWidget {
 }
 
 class _ToDoTaskState extends State<ToDoTask> {
+
+  late List<bool> _isChecked;
+
+  @override
+  void initState() {
+    super.initState();
+    _isChecked = List<bool>.filled(widget.events.length, false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +41,8 @@ class _ToDoTaskState extends State<ToDoTask> {
               decoration: BoxDecoration(
                   color: Gcolors.neutralColor900,
                   borderRadius: BorderRadius.circular(20)),
-              child: ListTile(
+              child: 
+              ListTile(
                 leading: Container(
                   child: Text('Checkbox'),
                 ),
@@ -40,6 +50,7 @@ class _ToDoTaskState extends State<ToDoTask> {
                 subtitle: Text(DateFormat.yMMMEd().format(widget.events[index].date)),
                 trailing:
                     Icon(Icons.edit_document, color: Gcolors.primaryColor400),
+                    
               ));
           // return ToDoTask(
           //     taskName: TaskList[index][0],

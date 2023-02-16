@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter_application_1/attendance.dart';
 import 'package:flutter_application_1/constants/routes.dart';
+import 'package:flutter_application_1/experimentation/modalInput.dart';
 import 'package:flutter_application_1/experimentation/setTaskExperiment.dart';
 import 'package:flutter_application_1/model/TaskComponents.dart';
 import 'package:flutter_application_1/notification.dart';
@@ -39,7 +40,7 @@ class _HomepageState extends State<Homepage> {
     });
   }
 
-  final List<TaskComponent> events = [
+  List<TaskComponent> events = [
     TaskComponent(
         title: 'Zairza App Work',
         description: 'Design and deploy Zairza App',
@@ -66,14 +67,26 @@ class _HomepageState extends State<Homepage> {
         id: DateTime.now().toString()),
   ];
 
-  void _addEvents(String title, String description, DateTime date,
-      TimeOfDay time, String id) {
+  void _addEvents(String title, String description, DateTime date,TimeOfDay time
+      // , String id
+      ) {
     final newEvent = TaskComponent(
-        title: title, description: description, date: date, time: time, id: id);
+        title: title, description: description, date: date, time: time, id: DateTime.now().toString(),
+        //, id: id
+        );
 
     setState(() {
       events.add(newEvent);
     });
+  }
+
+  void _startNewEvent(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return modalInput(addEvents: _addEvents);
+      },
+    );
   }
 
   Future<bool> _onWillPop() async {
@@ -129,10 +142,17 @@ class _HomepageState extends State<Homepage> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: Color(0xffB8FC27),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      SettaskExperiment(addEvents: _addEvents)));
+              _startNewEvent(context);
             },
+            // () async {
+            //   final newEvents = Navigator.of(context).push(MaterialPageRoute(
+            //       builder: (context) =>
+            //           SettaskExperiment(addEvents: _addEvents)));
+
+            //   setState(() {
+            //     this.events = newEvents as List<TaskComponent>;
+            //   });
+            // },
             child: Icon(
               Icons.add,
               color: Color(0xff1C1B1F),
