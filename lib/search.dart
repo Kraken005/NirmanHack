@@ -1,34 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Tasks.dart';
 import 'package:flutter_application_1/constants/color_constants.dart';
 import 'package:flutter_application_1/constants/routes.dart';
+import 'package:flutter_application_1/model/TaskComponents.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrganisationModel {
   String? organisationName;
   String? organisationDesciprtion;
 
-  OrganisationModel(this.organisationName, this.organisationDesciprtion);
+  OrganisationModel({
+    this.organisationName,
+    this.organisationDesciprtion,
+  });
 }
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  //final Function? events;
+  const SearchPage({
+    super.key,
+  });
 
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
+  final List<TaskComponent> events = [
+    TaskComponent(
+        title: 'Kotlin Session on 20 Feb',
+        description: 'Learn Kotlin android development',
+        date: DateTime.utc(2023, 2, 20),
+        time: TimeOfDay.fromDateTime(DateTime.utc(2023, 2, 20, 16)),
+        id: DateTime.now().toString()),
+    TaskComponent(
+        title: 'AI/ML Session on 25 Feb',
+        description: 'Learn Kotlin android development',
+        date: DateTime.utc(2023, 2, 25),
+        time: TimeOfDay.fromDateTime(DateTime.utc(2023, 2, 25, 18)),
+        id: DateTime.now().toString()),
+  ];
+
   static List<OrganisationModel> main_organisation_list = [
-    OrganisationModel('ASME',
-        'It promotes the art, science and practice of multidisciplinary engineering and allied sciences around the globe.'),
-    OrganisationModel('Silicon Institute of Technology',
-        'A NAAC Grade A grade engineering institution located in Bhubaneswar'),
-    OrganisationModel('SWITCH Club',
-        'The official coding club of SiliconTech, Silicon Wing of Technical and Coding Hub (SWITCH), develops a love for coding and advanced coding skills among students, and keeps them informed of the latest trends.'),
-    OrganisationModel('NSS',
-        'The sole aim of the NSS is to provide hands on experience to young students in delivering community service.'),
-    OrganisationModel('GDSC Leads',
-        'The club is passionate about helping their peers learn technology and connect')
+    OrganisationModel(
+        organisationName: 'ASME',
+        organisationDesciprtion:
+            'It promotes the art, science and practice of multidisciplinary engineering and allied sciences around the globe.'),
+    OrganisationModel(
+        organisationName: 'Silicon Institute of Technology',
+        organisationDesciprtion:
+            'A NAAC Grade A grade engineering institution located in Bhubaneswar'),
+    OrganisationModel(
+        organisationName: 'SWITCH Club',
+        organisationDesciprtion:
+            'The official coding club of SiliconTech, Silicon Wing of Technical and Coding Hub (SWITCH), develops a love for coding and advanced coding skills among students, and keeps them informed of the latest trends.'),
+    OrganisationModel(
+        organisationName: 'NSS',
+        organisationDesciprtion:
+            'The sole aim of the NSS is to provide hands on experience to young students in delivering community service.'),
+    OrganisationModel(
+        organisationName: 'GDSC Leads',
+        organisationDesciprtion:
+            'The club is passionate about helping their peers learn technology and connect')
   ];
 
   List<OrganisationModel> display_list = List.from(main_organisation_list);
@@ -44,6 +77,10 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   var _controller = TextEditingController();
+
+  // void submitDataEvents() {
+  //   widget
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +218,9 @@ class _SearchPageState extends State<SearchPage> {
                                                 MaterialStatePropertyAll<Color>(
                                                     Gcolors.primaryColor400),
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            ToDoTask(events: events);
+                                          },
                                           child: Text(
                                             "Yes",
                                             style: GoogleFonts.inter(

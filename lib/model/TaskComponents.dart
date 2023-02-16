@@ -6,7 +6,7 @@ class TaskComponent {
   final DateTime date;
   final TimeOfDay time;
   final String id;
-  final bool? onChanged;
+  bool? onChanged;
 
   TaskComponent({
     required this.title,

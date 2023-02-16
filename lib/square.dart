@@ -3,8 +3,16 @@ import 'package:flutter_application_1/constants/color_constants.dart';
 
 class MySquare extends StatelessWidget {
   final String Name;
+  final PresentClass;
+  final  AbsentClass;
+  //final String PresentClass;
+  //final String AbsentClass;
 
-  const MySquare({super.key, required this.Name});
+  MySquare(
+      {super.key,
+      required this.Name,
+      required this.PresentClass,
+      required this.AbsentClass});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +43,7 @@ class MySquare extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 24.0),
                     child: Text(
-                      '60%',
+                      '0%',
                       style: TextStyle(
                           color: Gcolors.primaryColor300,
                           fontSize: 18,
@@ -58,7 +66,7 @@ class MySquare extends StatelessWidget {
                     width: 4,
                   ),
                   Text(
-                    '12',
+                    '0',
                     style: TextStyle(
                         fontSize: 14,
                         color: Gcolors.primaryColor050,
@@ -72,7 +80,7 @@ class MySquare extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '20',
+                    '0',
                     style: TextStyle(
                         fontSize: 14,
                         color: Gcolors.primaryColor050,
@@ -117,14 +125,15 @@ class MySquare extends StatelessWidget {
                 child: Row(
                   //crossAxisAlignment: CrossAxisAlignment.end,
                   //crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,                 // mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment
+                      .start, // mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
                         height: 40,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: PresentClass,
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:Gcolors.primaryColor400),
+                                backgroundColor: Gcolors.primaryColor400),
                             child: Text(
                               'PRESENT',
                               style: TextStyle(
@@ -138,15 +147,13 @@ class MySquare extends StatelessWidget {
                     Container(
                         height: 40,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: AbsentClass,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Gcolors.neutralColor1000,
-                              side: BorderSide(
-                                width: 2,
-                                color: Colors.red.shade400,
-                                
-                              )
-                                ),
+                                backgroundColor: Gcolors.neutralColor1000,
+                                side: BorderSide(
+                                  width: 2,
+                                  color: Colors.red.shade400,
+                                )),
                             child: Text(
                               'ABSENT',
                               style: TextStyle(
@@ -163,10 +170,8 @@ class MySquare extends StatelessWidget {
                         child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                width: 2,
-                                color: Gcolors.neutralColor400
-                              ),
+                                side: BorderSide(
+                                    width: 2, color: Gcolors.neutralColor400),
                                 backgroundColor: Gcolors.neutralColor1000),
                             child: Text(
                               'UNDO',

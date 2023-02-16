@@ -21,8 +21,8 @@ class ToDoTask extends StatefulWidget {
 }
 
 class _ToDoTaskState extends State<ToDoTask> {
-
   late List<bool> _isChecked;
+  List<TaskComponent> userChecked = [];
 
   @override
   void initState() {
@@ -37,21 +37,55 @@ class _ToDoTaskState extends State<ToDoTask> {
         itemCount: widget.events.length,
         itemBuilder: (context, index) {
           return Container(
-              padding: EdgeInsets.only(left: 10, right: 15, bottom: 10),
-              decoration: BoxDecoration(
-                  color: Gcolors.neutralColor900,
-                  borderRadius: BorderRadius.circular(20)),
-              child: 
-              ListTile(
-                leading: Container(
-                  child: Text('Checkbox'),
-                ),
-                title: Text(widget.events[index].title),
-                subtitle: Text(DateFormat.yMMMEd().format(widget.events[index].date)),
-                trailing:
-                    Icon(Icons.edit_document, color: Gcolors.primaryColor400),
-                    
-              ));
+            padding: EdgeInsets.only(left: 10, right: 15, bottom: 10),
+            decoration: BoxDecoration(
+                color: Gcolors.neutralColor900,
+                borderRadius: BorderRadius.circular(20)),
+            child: CheckboxListTile(
+              side: BorderSide(color: Gcolors.primaryColor050),
+              activeColor: Gcolors.primaryColor400,
+              checkColor: Gcolors.neutralColor1000,
+              value: widget.events[index].onChanged,
+              onChanged: (val) {
+                setState(
+                  () {
+                    widget.events[index].onChanged = val;
+                  },
+                );
+              },
+              secondary: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.edit_document,
+                    color: Gcolors.primaryColor400,
+                  )),
+              controlAffinity: ListTileControlAffinity.leading,
+              title: Text(
+                widget.events[index].title,
+                style: TextStyle(
+                    color: Gcolors.primaryColor400,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+              subtitle: Text(
+                DateFormat.yMMMEd().format(widget.events[index].date),
+                style: TextStyle(color: Gcolors.primaryColor050),
+              ),
+            ),
+            // ListTile(
+            //   leading:
+            //   Checkbox(
+            //       value: userChecked.contains(widget.events[index]),
+            //       onChanged: (val) {
+            //         _onSelected(val!, widget.events[index].title, widget.events[index].description, widget.events[index].date, widget.events[index].time, );
+            //       }),
+            //   title: Text(widget.events[index].title),
+            //   subtitle: Text(
+            //       DateFormat.yMMMEd().format(widget.events[index].date)),
+            //   trailing:
+            //       Icon(Icons.edit_document, color: Gcolors.primaryColor400),
+            // )
+          );
           // return ToDoTask(
           //     taskName: TaskList[index][0],
           //     taskCompleted: TaskList[index][1],

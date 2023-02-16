@@ -46,25 +46,25 @@ class _HomepageState extends State<Homepage> {
         description: 'Design and deploy Zairza App',
         date: DateTime.now(),
         time: TimeOfDay.now(),
-        id: DateTime.now().toString()),
+        id: DateTime.now().toString(),onChanged: false,),
     TaskComponent(
         title: 'Flat Assignment',
         description: 'Score full marks in Flat assignment',
         date: DateTime.now(),
         time: TimeOfDay.now(),
-        id: DateTime.now().toString()),
+        id: DateTime.now().toString(),onChanged: false,),
     TaskComponent(
         title: 'Coffee Date with Barsha',
         description: 'At Radium Cafe',
         date: DateTime.now(),
         time: TimeOfDay.now(),
-        id: DateTime.now().toString()),
+        id: DateTime.now().toString(),onChanged: false,),
     TaskComponent(
         title: 'Switch to "Switch"',
         description: 'Ditch Zairza',
         date: DateTime.now(),
         time: TimeOfDay.now(),
-        id: DateTime.now().toString()),
+        id: DateTime.now().toString(),onChanged: false,),
   ];
 
   void _addEvents(String title, String description, DateTime date,TimeOfDay time
