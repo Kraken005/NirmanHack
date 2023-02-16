@@ -83,18 +83,22 @@ class _SettaskExperimentState extends State<SettaskExperiment> {
   //TimeOfDay selectedTime = TimeOfDay.now();
   bool showDate = false;
   bool showTime = false;
-
-  void submitData(DateTime picked) {
+  var newEvents;
+  void submitData() {
     final enteredTitle = titleController.text;
     final enteredDescription = descriptionController.text;
-    final enteredDate = picked;
+    final enteredDate = _dateController.text;
+    final enteredTime = _timeController.text;
     final enteredId = DateTime.now();
 
-    print(enteredDate.toString());
+    //print(enteredDate.toString());
 
     if (enteredTitle.isEmpty || enteredDescription.isEmpty) {
       return;
     }
+
+    final newEvents = widget.addEvents(enteredTitle, enteredDescription,
+        enteredDate, enteredTime, idcontroller);
 
     widget.addEvents(
       titleController.text,
@@ -172,7 +176,7 @@ class _SettaskExperimentState extends State<SettaskExperiment> {
             [hh, ':', nn, " ", am]).toString();
       });
 
-    return selectedDate;
+    return selectedTime;
   }
 
   // Future<TimeOfDay> _selectTime(BuildContext context) async {
@@ -188,22 +192,22 @@ class _SettaskExperimentState extends State<SettaskExperiment> {
   //   return selectedTime;
   // }
 
-  String getDate() {
-    // ignore: unnecessary_null_comparison
-    if (selectedDate == null) {
-      return 'select date';
-    } else {
-      return DateFormat('MMM d, yyyy').format(selectedDate);
-    }
-  }
+  // String getDate() {
+  //   // ignore: unnecessary_null_comparison
+  //   if (selectedDate == null) {
+  //     return 'select date';
+  //   } else {
+  //     return DateFormat('MMM d, yyyy').format(selectedDate);
+  //   }
+  // }
 
-  String getTime(TimeOfDay tod) {
-    final now = DateTime.now();
+  // String getTime(TimeOfDay tod) {
+  //   final now = DateTime.now();
 
-    final dt = DateTime(now.year, now.month, now.day, tod.hour, tod.minute);
-    final format = DateFormat.jm();
-    return format.format(dt);
-  }
+  //   final dt = DateTime(now.year, now.month, now.day, tod.hour, tod.minute);
+  //   final format = DateFormat.jm();
+  //   return format.format(dt);
+  // }
 
   @override
   void initState() {
@@ -596,10 +600,14 @@ class _SettaskExperimentState extends State<SettaskExperiment> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                             )),
-                        onPressed: () async {
-                          submitData(await _selectDate(context) as DateTime);
-                          // Navigator.pop(context);
+                        onPressed: () {
+                          submitData;
+                          Navigator.of(context).pop(newEvents);
                         },
+                        // async {
+                        //   submitData(await _selectDate(context) as DateTime);
+                        //   // Navigator.pop(context);
+                        // },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 20),
