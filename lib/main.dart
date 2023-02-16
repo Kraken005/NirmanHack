@@ -6,6 +6,9 @@ import 'package:flutter_application_1/notification.dart';
 import 'package:flutter_application_1/setTask.dart';
 import 'Homepage.dart';
 import 'package:flutter_application_1/nav.dart';
+import './experimentation/setTaskExperiment.dart';
+
+//import 't';
 
 void main() {
   runApp(MyApp());
@@ -21,13 +24,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: NavigationBarPage(),
       title: 'Nirman',
-      // routes: {
-      //   addTaskRoute: (context) => const Settask(),
-      //   homeRoute: (context) => const Homepage(),
-      //   // notificationRoute: (context) => const NotificationPage(),
-
-      //    attendanceRoute: (context) => const AttendancePage(),
-      // },
+      routes: {
+        addTaskRoute: (context) => const Settask(),
+        homeRoute: (context) => const Homepage(),
+        notificationRoute: (context) => const NotificationPage(),
+        // attendanceRoute: (context) => const Attendance(),
+      },
     );
   }
 }
