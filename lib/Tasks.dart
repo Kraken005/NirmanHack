@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/TaskComponents.dart';
 import 'constants/color_constants.dart';
@@ -23,6 +24,8 @@ class ToDoTask extends StatefulWidget {
 class _ToDoTaskState extends State<ToDoTask> {
   late List<bool> _isChecked;
   List<TaskComponent> userChecked = [];
+  // final CollectionReference<Map<String, dynamic>> _stream =
+  //     FirebaseFirestore.instance.collection("Todo");
 
   @override
   void initState() {
@@ -72,25 +75,10 @@ class _ToDoTaskState extends State<ToDoTask> {
                 style: TextStyle(color: Gcolors.primaryColor050),
               ),
             ),
-            // ListTile(
-            //   leading:
-            //   Checkbox(
-            //       value: userChecked.contains(widget.events[index]),
-            //       onChanged: (val) {
-            //         _onSelected(val!, widget.events[index].title, widget.events[index].description, widget.events[index].date, widget.events[index].time, );
-            //       }),
-            //   title: Text(widget.events[index].title),
-            //   subtitle: Text(
-            //       DateFormat.yMMMEd().format(widget.events[index].date)),
-            //   trailing:
-            //       Icon(Icons.edit_document, color: Gcolors.primaryColor400),
-            // )
+            
           );
-          // return ToDoTask(
-          //     taskName: TaskList[index][0],
-          //     taskCompleted: TaskList[index][1],
-          //     onChanged: (value) =>
-          //         checkBoxChanged(value, index));
+         
+         
         },
       ),
     );

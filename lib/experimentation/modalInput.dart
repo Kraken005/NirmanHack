@@ -72,7 +72,7 @@ class _modalInputState extends State<modalInput> {
   }
 
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Card(
       elevation: 8,
       child: Container(
@@ -84,8 +84,7 @@ class _modalInputState extends State<modalInput> {
             Container(
               decoration: BoxDecoration(
                   border: Border.all(color: Gcolors.neutralColor400),
-                  borderRadius: BorderRadius.circular(24)
-                  ),
+                  borderRadius: BorderRadius.circular(24)),
               height: 48,
               width: 366,
               child: Padding(
@@ -108,8 +107,7 @@ class _modalInputState extends State<modalInput> {
             Container(
               decoration: BoxDecoration(
                   border: Border.all(color: Gcolors.neutralColor400),
-                  borderRadius: BorderRadius.circular(12)
-                  ),
+                  borderRadius: BorderRadius.circular(12)),
               width: 366,
               height: 192,
               child: Padding(
@@ -118,11 +116,11 @@ class _modalInputState extends State<modalInput> {
                   minLines: 1,
                   maxLines: 4,
                   style:
-                          TextStyle(fontSize: 14, color: Gcolors.neutralColor400),
-                      decoration: InputDecoration.collapsed(
-                        hintText: 'Description',
-                        hintStyle: TextStyle(color: Gcolors.primaryColor050),
-                      ),
+                      TextStyle(fontSize: 14, color: Gcolors.neutralColor400),
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Description',
+                    hintStyle: TextStyle(color: Gcolors.primaryColor050),
+                  ),
                   controller: descriptionController,
                   onSubmitted: (value) => submitData,
                 ),
@@ -137,7 +135,9 @@ class _modalInputState extends State<modalInput> {
                 ),
                 TextButton(
                   onPressed: _presentDatePicker,
-                  child: Text('Choose Date',),
+                  child: Text(
+                    'Choose Date',
+                  ),
                 ),
                 Expanded(
                   child: Text(_selectedTime == null
@@ -158,18 +158,20 @@ class _modalInputState extends State<modalInput> {
             ),
             ElevatedButton(
                 onPressed: submitData, child: Text('Add Transaction')),
-                InkWell(
+            SizedBox(
+              height: 10,
+            ),
+            InkWell(
                 onTap: () {
-                  FirebaseFirestore.instance
-                      .collection("Todo")
-                      .add({"title": "Zairza", "description": "Club in Uni"});
+                  FirebaseFirestore.instance.collection("Todo").add({
+                    "title": titleController.text,
+                    "description": descriptionController.text
+                  });
                 },
-                child: Text('data')),
+                child: Text('Add to firebase')),
           ],
         ),
       ),
     );
   }
 }
-            
-          
