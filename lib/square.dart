@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants/color_constants.dart';
 
-class MySquare extends StatelessWidget {
+class MySquare extends StatefulWidget {
   final String Name;
   final PresentClass;
-  final  AbsentClass;
+  final AbsentClass;
+  final UndoClass;
+  final percentage;
   //final String PresentClass;
   //final String AbsentClass;
 
@@ -12,14 +14,59 @@ class MySquare extends StatelessWidget {
       {super.key,
       required this.Name,
       required this.PresentClass,
-      required this.AbsentClass});
+      required this.AbsentClass,
+      required this.UndoClass,
+      required this.percentage});
+
+  @override
+  State<MySquare> createState() => _MySquareState();
+}
+
+class _MySquareState extends State<MySquare> {
+  int _present = 0;
+  int _days = 0;
+  var prev;
+
+  void PresentClass() {
+    setState(() {
+      _present++;
+      _days++;
+      prev = PresentClass;
+    });
+  }
+
+  void AbsentClass() {
+    setState(() {
+      _days++;
+      prev = AbsentClass;
+    });
+  }
+
+  void UndoClass() {
+    if (prev == PresentClass)
+      setState(() {
+        _present--;
+        _days--;
+      });
+    else if (prev == AbsentClass) {
+      setState(() {
+        _days--;
+      });
+    } else {}
+  }
+
+  // for(int i=0;i<=AttendanceList.length;i++){
+  //   AttendanceList[index]
+  // }
+
+  // $_present / $_absent == $
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 12.0, right: 12, bottom: 12),
       child: Container(
-        height: 135,
+        height: 125,
         //color: Gcolors.neutralColor400,
         decoration: BoxDecoration(
             color: Gcolors.neutralColor1000,
@@ -34,19 +81,19 @@ class MySquare extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    Name,
+                    widget.Name,
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Gcolors.primaryColor050),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 24.0),
                     child: Text(
-                      '0%',
+                      ((_present / _days) * 100).toStringAsFixed(2),
                       style: TextStyle(
                           color: Gcolors.primaryColor300,
-                          fontSize: 18,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
                   )
@@ -60,13 +107,13 @@ class MySquare extends StatelessWidget {
                   Text(
                     'Attendance: ',
                     style:
-                        TextStyle(fontSize: 14, color: Gcolors.neutralColor400),
+                        TextStyle(fontSize: 16, color: Gcolors.neutralColor400),
                   ),
                   SizedBox(
                     width: 4,
                   ),
                   Text(
-                    '0',
+                    '$_present',
                     style: TextStyle(
                         fontSize: 14,
                         color: Gcolors.primaryColor050,
@@ -80,7 +127,7 @@ class MySquare extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '0',
+                    '$_days',
                     style: TextStyle(
                         fontSize: 14,
                         color: Gcolors.primaryColor050,
@@ -103,23 +150,23 @@ class MySquare extends StatelessWidget {
               SizedBox(
                 height: 2,
               ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Status : ',
-                        style: TextStyle(
-                            fontSize: 14, color: Gcolors.primaryColor050),
-                      ),
-                      Text(
-                        'Attend next 12 classes to get back on track',
-                        style: TextStyle(color: Gcolors.primaryColor050),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+              // Column(
+              //   children: [
+              //     Row(
+              //       children: [
+              //         Text(
+              //           'Status : ',
+              //           style: TextStyle(
+              //               fontSize: 14, color: Gcolors.primaryColor050),
+              //         ),
+              //         Text(
+              //           'Attend next 12 classes to get back on track',
+              //           style: TextStyle(color: Gcolors.primaryColor050),
+              //         )
+              //       ],
+              //     ),
+              //   ],
+              // ),
               Padding(
                 padding: const EdgeInsets.only(right: 20.0, top: 12),
                 child: Row(
@@ -168,7 +215,7 @@ class MySquare extends StatelessWidget {
                         height: 40,
                         width: 70,
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: UndoClass,
                             style: ElevatedButton.styleFrom(
                                 side: BorderSide(
                                     width: 2, color: Gcolors.neutralColor400),

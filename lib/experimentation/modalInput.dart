@@ -72,40 +72,77 @@ class _modalInputState extends State<modalInput> {
   }
 
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Card(
       elevation: 8,
       child: Container(
         decoration: BoxDecoration(color: Gcolors.neutralColor900),
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(24),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextField(
-              decoration: InputDecoration(labelText: 'Title'),
-              controller: titleController,
-              onSubmitted: (value) => submitData,
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Gcolors.neutralColor400),
+                  borderRadius: BorderRadius.circular(24)
+                  ),
+              height: 48,
+              width: 366,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TextField(
+                  style:
+                      TextStyle(fontSize: 14, color: Gcolors.neutralColor400),
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Title',
+                    hintStyle: TextStyle(color: Gcolors.primaryColor050),
+                  ),
+                  controller: titleController,
+                  onSubmitted: (value) => submitData,
+                ),
+              ),
             ),
-            TextField(
-              decoration: InputDecoration(labelText: 'Description'),
-              controller: descriptionController,
-              onSubmitted: (value) => submitData,
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Gcolors.neutralColor400),
+                  borderRadius: BorderRadius.circular(12)
+                  ),
+              width: 366,
+              height: 192,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
+                child: TextField(
+                  minLines: 1,
+                  maxLines: 4,
+                  style:
+                          TextStyle(fontSize: 14, color: Gcolors.neutralColor400),
+                      decoration: InputDecoration.collapsed(
+                        hintText: 'Description',
+                        hintStyle: TextStyle(color: Gcolors.primaryColor050),
+                      ),
+                  controller: descriptionController,
+                  onSubmitted: (value) => submitData,
+                ),
+              ),
             ),
             Row(
               children: [
                 Expanded(
                   child: Text(_selectedDate == null
                       ? 'No Date Chosen'
-                      : 'Picked Date: ${DateFormat.yMd().format(_selectedDate)}'),
+                      : '${DateFormat.yMd().format(_selectedDate)}'),
                 ),
                 TextButton(
                   onPressed: _presentDatePicker,
-                  child: Text('Choose Date'),
+                  child: Text('Choose Date',),
                 ),
                 Expanded(
                   child: Text(_selectedTime == null
                       ? 'No Time chosen'
-                      : 'Picked Time: ${formatDate(DateTime(2019, 08, 1, _selectedTime.hour, _selectedTime.minute), [
+                      : '${formatDate(DateTime(2019, 08, 1, _selectedTime.hour, _selectedTime.minute), [
                               hh,
                               ':',
                               nn,
@@ -121,7 +158,7 @@ class _modalInputState extends State<modalInput> {
             ),
             ElevatedButton(
                 onPressed: submitData, child: Text('Add Transaction')),
-            InkWell(
+                InkWell(
                 onTap: () {
                   FirebaseFirestore.instance
                       .collection("Todo")
@@ -134,3 +171,5 @@ class _modalInputState extends State<modalInput> {
     );
   }
 }
+            
+          

@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'constants/color_constants.dart';
 import 'package:flutter_application_1/square.dart';
-import './square.dart';
 
 class AttendancePage extends StatefulWidget {
   const AttendancePage({super.key});
@@ -14,9 +13,7 @@ class AttendancePage extends StatefulWidget {
 }
 
 class _AttendancePageState extends State<AttendancePage> {
-
   final _controller = TextEditingController();
-
 
   List AttendanceList = <String>[
     'FLAT CLASS',
@@ -33,65 +30,65 @@ class _AttendancePageState extends State<AttendancePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xffB8FC27),
         onPressed: createNewAttendance,
-       // onPressed: () {
-          // showDialog(
-          //     context: context,
-          //     builder: (BuildContext context) {
-          //       return AlertDialog(
-          //         backgroundColor: Gcolors.neutralColor900,
-          //         title: Column(
-          //           crossAxisAlignment: CrossAxisAlignment.center,
-          //           children: [
-          //             Text(
-          //               "Add Subject",
-          //               style: GoogleFonts.inter(
-          //                   textStyle:
-          //                       TextStyle(color: Gcolors.primaryColor050)),
-          //             ),
-          //             SizedBox(
-          //               height: 16,
-          //             ),
-          //             Padding(
-          //               padding: const EdgeInsets.only(bottom: 8),
-          //               child: Container(
-          //                 height: 100,
-          //                 width: 200,
-          //                 child: TextField(
-          //                   style: TextStyle(
-          //                       fontSize: 14, color: Gcolors.neutralColor400),
-          //                   decoration: InputDecoration(
-          //                     hintText: 'Search for Clubs...',
-          //                     hintStyle:
-          //                         TextStyle(color: Gcolors.neutralColor400),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ),
-          //             OutlinedButton(
-          //                 style: ButtonStyle(
-          //                   backgroundColor: MaterialStatePropertyAll<Color>(
-          //                       Gcolors.primaryColor400),
-          //                 ),
-          //                 onPressed: () {},
-          //                 child: Text(
-          //                   "Add",
-          //                   style: GoogleFonts.inter(
-          //                       textStyle: TextStyle(
-          //                           fontSize: 16,
-          //                           fontWeight: FontWeight.w600,
-          //                           color: Gcolors.neutralColor900)),
-          //                 ))
-          //           ],
-          //         ),
-          //         titleTextStyle: TextStyle(
-          //             fontWeight: FontWeight.bold,
-          //             color: Colors.black,
-          //             fontSize: 20),
-          //         actionsOverflowButtonSpacing: 20,
-          //         actions: [],
-          //       );
-          //     });
-       // },
+        // onPressed: () {
+        // showDialog(
+        //     context: context,
+        //     builder: (BuildContext context) {
+        //       return AlertDialog(
+        //         backgroundColor: Gcolors.neutralColor900,
+        //         title: Column(
+        //           crossAxisAlignment: CrossAxisAlignment.center,
+        //           children: [
+        //             Text(
+        //               "Add Subject",
+        //               style: GoogleFonts.inter(
+        //                   textStyle:
+        //                       TextStyle(color: Gcolors.primaryColor050)),
+        //             ),
+        //             SizedBox(
+        //               height: 16,
+        //             ),
+        //             Padding(
+        //               padding: const EdgeInsets.only(bottom: 8),
+        //               child: Container(
+        //                 height: 100,
+        //                 width: 200,
+        //                 child: TextField(
+        //                   style: TextStyle(
+        //                       fontSize: 14, color: Gcolors.neutralColor400),
+        //                   decoration: InputDecoration(
+        //                     hintText: 'Search for Clubs...',
+        //                     hintStyle:
+        //                         TextStyle(color: Gcolors.neutralColor400),
+        //                   ),
+        //                 ),
+        //               ),
+        //             ),
+        //             OutlinedButton(
+        //                 style: ButtonStyle(
+        //                   backgroundColor: MaterialStatePropertyAll<Color>(
+        //                       Gcolors.primaryColor400),
+        //                 ),
+        //                 onPressed: () {},
+        //                 child: Text(
+        //                   "Add",
+        //                   style: GoogleFonts.inter(
+        //                       textStyle: TextStyle(
+        //                           fontSize: 16,
+        //                           fontWeight: FontWeight.w600,
+        //                           color: Gcolors.neutralColor900)),
+        //                 ))
+        //           ],
+        //         ),
+        //         titleTextStyle: TextStyle(
+        //             fontWeight: FontWeight.bold,
+        //             color: Colors.black,
+        //             fontSize: 20),
+        //         actionsOverflowButtonSpacing: 20,
+        //         actions: [],
+        //       );
+        //     });
+        // },
         child: Icon(
           Icons.add,
           color: Color(0xff1C1B1F),
@@ -142,7 +139,7 @@ class _AttendancePageState extends State<AttendancePage> {
                                   color: Gcolors.neutralColor400, fontSize: 16),
                             ),
                             Text(
-                              '0%',
+                              '',
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -179,8 +176,8 @@ class _AttendancePageState extends State<AttendancePage> {
                       itemCount: AttendanceList.length,
                       itemBuilder: (context, index) {
                         return MySquare(
-                          
-                          Name: AttendanceList[index], PresentClass: (){}, AbsentClass: () {}, 
+                          Name: AttendanceList[index], PresentClass: () {},
+                          AbsentClass: () {}, UndoClass: () {}, percentage: (){},
                           //Name: Attendance_list[index],
                         );
                       }),
@@ -197,7 +194,7 @@ class _AttendancePageState extends State<AttendancePage> {
     );
   }
 
-  void saveNewAttendance(){
+  void saveNewAttendance() {
     setState(() {
       AttendanceList.add(_controller.text);
       _controller.clear();
@@ -205,14 +202,15 @@ class _AttendancePageState extends State<AttendancePage> {
     Navigator.of(context).pop();
   }
 
-
   void createNewAttendance() {
-    showDialog(context: context, builder: (context){
-      return DialogBox(
-        subject: _controller,
-        onSave: saveNewAttendance,
-        onCancel: () => Navigator.of(context).pop(),
-      );
-    });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return DialogBox(
+            subject: _controller,
+            onSave: saveNewAttendance,
+            onCancel: () => Navigator.of(context).pop(),
+          );
+        });
   }
 }
