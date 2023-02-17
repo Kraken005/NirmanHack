@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -33,6 +34,7 @@ class _modalInputState extends State<modalInput> {
       _selectedDate,
       _selectedTime,
     );
+    Navigator.of(context).pop();
   }
 
   void _presentDatePicker() {
@@ -118,7 +120,14 @@ class _modalInputState extends State<modalInput> {
               ],
             ),
             ElevatedButton(
-                onPressed: submitData, child: Text('Add Transaction'))
+                onPressed: submitData, child: Text('Add Transaction')),
+            InkWell(
+                onTap: () {
+                  FirebaseFirestore.instance
+                      .collection("Todo")
+                      .add({"title": "Zairza", "description": "Club in Uni"});
+                },
+                child: Text('data')),
           ],
         ),
       ),

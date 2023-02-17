@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "141966617984",
+    "project_id": "zencal-app",
+    "storage_bucket": "zencal-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141966617984:android:a3bdcb5b2c1ccd19ce2565",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141966617984-2jr87uvk9emvvb0rk6f1dgkl4cr55mgb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCht4RhrcByd7NkNqTMaYhIuNXTNJM3pZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141966617984-2jr87uvk9emvvb0rk6f1dgkl4cr55mgb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
