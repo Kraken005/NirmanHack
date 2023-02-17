@@ -139,7 +139,7 @@ class _AttendancePageState extends State<AttendancePage> {
                                   color: Gcolors.neutralColor400, fontSize: 16),
                             ),
                             Text(
-                              '',
+                              '85%',
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,

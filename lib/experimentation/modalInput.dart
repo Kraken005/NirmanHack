@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -161,14 +161,14 @@ class _modalInputState extends State<modalInput> {
             SizedBox(
               height: 10,
             ),
-            InkWell(
-                onTap: () {
-                  FirebaseFirestore.instance.collection("Todo").add({
-                    "title": titleController.text,
-                    "description": descriptionController.text
-                  });
-                },
-                child: Text('Add to firebase')),
+            // InkWell(
+            //     onTap: () {
+            //       FirebaseFirestore.instance.collection("Todo").add({
+            //         "title": titleController.text,
+            //         "description": descriptionController.text
+            //       });
+            //     },
+            //     child: Text('Add to firebase')),
           ],
         ),
       ),
