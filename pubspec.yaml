@@ -41,6 +41,7 @@ dependencies:
   table_calendar: ^3.0.8
   intl: ^0.17.0
   date_format: ^2.0.7
+  flutter_native_splash: ^2.2.18
   # firebase_core: ^2.6.0
   # firebase_auth: ^4.2.7
   # cloud_firestore: ^4.4.1
@@ -58,7 +59,13 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+flutter_native_splash:
+  color: "#1C1B1F"
+  image: assets/images/bigLogo.png
 
+  android_12:
+    image: assets/images/bigLogo.png
+    icon_background_color: "#1C1B1F"
 # The following section is specific to Flutter packages.
 flutter:
 
