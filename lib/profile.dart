@@ -75,7 +75,7 @@ class _profileinfoState extends State<profileinfo> {
                           width: 8,
                         ),
                         Text(
-                          'Abhinaba Dash',
+                          'Sakshi Dash',
                           style: TextStyle(
                               fontSize: 14,
                               fontFamily: 'Inter',

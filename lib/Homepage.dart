@@ -42,38 +42,48 @@ class _HomepageState extends State<Homepage> {
 
   List<TaskComponent> events = [
     TaskComponent(
-        title: 'Zairza App Work',
-        description: 'Design and deploy Zairza App',
-        date: DateTime.now(),
-        time: TimeOfDay.now(),
-        id: DateTime.now().toString(),onChanged: false,),
+      title: 'Zairza App Work',
+      description: 'Design and deploy Zairza App',
+      date: DateTime.now(),
+      time: TimeOfDay.now(),
+      id: DateTime.now().toString(),
+      onChanged: false,
+    ),
     TaskComponent(
-        title: 'Flat Assignment',
-        description: 'Score full marks in Flat assignment',
-        date: DateTime.now(),
-        time: TimeOfDay.now(),
-        id: DateTime.now().toString(),onChanged: false,),
+      title: 'Flat Assignment',
+      description: 'Score full marks in Flat assignment',
+      date: DateTime.now(),
+      time: TimeOfDay.now(),
+      id: DateTime.now().toString(),
+      onChanged: false,
+    ),
     TaskComponent(
-        title: 'Coffee Date with Barsha',
-        description: 'At Radium Cafe',
-        date: DateTime.now(),
-        time: TimeOfDay.now(),
-        id: DateTime.now().toString(),onChanged: false,),
+      title: 'Buy Groceries',
+      description: 'Bring tomatoes, onions and potatoes',
+      date: DateTime.now(),
+      time: TimeOfDay.now(),
+      id: DateTime.now().toString(),
+      onChanged: false,
+    ),
     TaskComponent(
-        title: 'Switch to "Switch"',
-        description: 'Ditch Zairza',
-        date: DateTime.now(),
-        time: TimeOfDay.now(),
-        id: DateTime.now().toString(),onChanged: false,),
+      title: 'Complete Switch work',
+      description: 'Add homescreen to the app',
+      date: DateTime.now(),
+      time: TimeOfDay.now(),
+      id: DateTime.now().toString(),
+      onChanged: false,
+    ),
   ];
 
-  void _addEvents(String title, String description, DateTime date,TimeOfDay time
+  void _addEvents(
+      String title, String description, DateTime date, TimeOfDay time
       // , String id
       ) {
     final newEvent = TaskComponent(
-        title: title, description: description, date: date, time: time, id: DateTime.now().toString(),
-        //, id: id
-        );
+      title: title, description: description, date: date, time: time,
+      id: DateTime.now().toString(),
+      //, id: id
+    );
 
     setState(() {
       events.add(newEvent);
@@ -213,7 +223,7 @@ class _HomepageState extends State<Homepage> {
                 const EdgeInsets.only(top: 50, left: 7, right: 7, bottom: 15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   child: Padding(
@@ -347,58 +357,65 @@ class _HomepageState extends State<Homepage> {
                 SizedBox(
                   height: 24,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 30.0),
-                  child: Text(
-                    "TASKS",
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Gcolors.primaryColor050,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                //ToDoTask(events: events),
                 Expanded(
-                    child: Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Gcolors.neutralColor900,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: ToDoTask(events: events),
-                    // child: ListView.builder(
-                    //   itemCount: events.length,
-                    //   itemBuilder: (context, index) {
-                    //     // Container(
-                    //     //     padding: EdgeInsets.only(
-                    //     //         left: 10, right: 15, bottom: 10),
-                    //     //     decoration: BoxDecoration(
-                    //     //         color: Gcolors.neutralColor900,
-                    //     //         borderRadius: BorderRadius.circular(20)),
-                    //     //     child: ListTile(
-                    //     //       leading: Container(child: Text('Checkbox'),), title: Text(events[index].title), subtitle: Text(DateFormat.yMMMEd().format(events[index].date)), trailing: Icon(Icons.edit_document, color: Gcolors.primaryColor400),
-                    //     //     ));
-                    //     return ToDoTask(
-                    //       events: [
-                    //         TaskComponent(
-                    //             title: events[index].title,
-                    //             description: events[index].description,
-                    //             date: events[index].date,
-                    //             time: events[index].time,
-                    //             id: events[index].id)
-                    //       ],
-                    //       // taskName: events[index].title,
-                    //       // taskCompleted: events[index].onChanged,
-                    //       // onChanged: (value) =>
-                    //       //     checkBoxChanged(value, index));
-                    //     );
-                    //   },
-                    // ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          "TASKS",
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Gcolors.primaryColor050,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      //ToDoTask(events: events),
+                      Expanded(
+                          child: Padding(
+                        padding: const EdgeInsets.only(left: 10.0, right: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Gcolors.neutralColor900,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: ToDoTask(events: events),
+                          // child: ListView.builder(
+                          //   itemCount: events.length,
+                          //   itemBuilder: (context, index) {
+                          //     // Container(
+                          //     //     padding: EdgeInsets.only(
+                          //     //         left: 10, right: 15, bottom: 10),
+                          //     //     decoration: BoxDecoration(
+                          //     //         color: Gcolors.neutralColor900,
+                          //     //         borderRadius: BorderRadius.circular(20)),
+                          //     //     child: ListTile(
+                          //     //       leading: Container(child: Text('Checkbox'),), title: Text(events[index].title), subtitle: Text(DateFormat.yMMMEd().format(events[index].date)), trailing: Icon(Icons.edit_document, color: Gcolors.primaryColor400),
+                          //     //     ));
+                          //     return ToDoTask(
+                          //       events: [
+                          //         TaskComponent(
+                          //             title: events[index].title,
+                          //             description: events[index].description,
+                          //             date: events[index].date,
+                          //             time: events[index].time,
+                          //             id: events[index].id)
+                          //       ],
+                          //       // taskName: events[index].title,
+                          //       // taskCompleted: events[index].onChanged,
+                          //       // onChanged: (value) =>
+                          //       //     checkBoxChanged(value, index));
+                          //     );
+                          //   },
+                          // ),
+                        ),
+                      ))
+                    ],
                   ),
-                ))
+                ),
               ],
             ),
           )
